@@ -13,6 +13,13 @@ app.use(cors({
   credentials: true, // si usas cookies/autenticación
 }));
 
+app.use(cors({
+  origin: 'https://tudominio.cloudflare.pages.dev', // URL real de tu frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
+
 app.use(express.json());
 
 // Rutas
