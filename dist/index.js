@@ -8,7 +8,12 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:3000', // origen permitido
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, // si usas cookies/autenticación
+    credentials: true,
+}));
+app.use(cors({
+    origin: 'https://f8e2b65d.ecommercechipelibros.pages.dev/',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
 }));
 app.use(express.json());
 // Rutas
