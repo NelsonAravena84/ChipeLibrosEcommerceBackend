@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://f8e2b65d.ecommercechipelibros.pages.dev'
+    'https://9bb5f6cb.ecommercechipelibros.pages.dev/'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
