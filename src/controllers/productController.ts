@@ -61,3 +61,35 @@ export const obtenerProductosPorCategoria = async (req: Request, res: Response) 
         res.status(500).json({error: "Error al obtener los productos por categoria"})
     }
 }
+
+export const obtenerProductoPorID = async (req: Request, res: Response) => {
+  try {
+    const product_id = parseInt(req.query.id as string);
+
+    if (!product_id) {
+      return res.status(400).json({ error: 'Debe enviar un id de producto válido' });
+    }
+
+    const producto = await prisma.productos.findUnique({
+      where: { id: product_id },
+      include: {
+        categorias: true // opcional, puedes quitarlo si no lo quieres
+      }
+    });
+
+    if (!producto) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
+    const productoFinal = {
+      ...producto,
+      categoria: producto.categorias?.nombre // opcional
+    };
+
+    res.json(productoFinal);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener el producto por id" });
+  }
+};
