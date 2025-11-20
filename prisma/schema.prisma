@@ -179,6 +179,12 @@ model productos {
   image_url       String?
   image_public_id String?
   rating          Int?
+  editorial       String?             @db.VarChar(255)
+  isbn            String?             @db.VarChar(50)
+  encuadernacion  String?             @db.VarChar(100)
+  idioma          String?             @db.VarChar(100)
+  numero_paginas  Int?
+  dimensiones     String?             @db.VarChar(100)
   carrito         carrito[]
   favoritos       favoritos[]
   ordenes_items   ordenes_items[]
