@@ -1,12 +1,14 @@
 import express from 'express';
 import router from './routes/productosRoutes.js';
 import dotenv from 'dotenv';
-import cors from 'cors'
+import cors from 'cors';
+import { CreateUser } from './controllers/userAccountController.js'; // ajusta ruta
+import authRouter from './routes/logingoogle.js';
+
 dotenv.config();
 
 const app = express();
 
-// Permitir CORS para tu frontend
 app.use(cors({
   origin: [
     'http://localhost:3000',
@@ -16,11 +18,16 @@ app.use(cors({
   credentials: true,
 }));
 
-
 app.use(express.json());
 
-// Rutas
+// Ruta productos
 app.use('/api/productos', router);
+
+// Ruta creación de usuarios
+app.post('/api/clientes', CreateUser);
+
+// Ruta para login google 
+app.use('/api/auth', authRouter)
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
